@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import pages.components.CalendarComponent;
@@ -95,6 +96,7 @@ public class RegistrationPage {
     @Step("Выбор хобби {value} в поле 'hobbies'")
     public RegistrationPage setHobbies(String value){
         hobbies.$(byText(value)).click();
+        Selenide.sleep(3000);
         return this;
     }
 
