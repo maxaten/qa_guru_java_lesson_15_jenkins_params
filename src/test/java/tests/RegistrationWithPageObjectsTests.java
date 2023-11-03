@@ -25,6 +25,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
     void fillFormTest(){
         registrationPage
                 .openPage()
+                .checkTitle(title)
                 .setFirstName(genData.firstName)
                 .setLastName(genData.lastName)
                 .setUserEmail(genData.email)

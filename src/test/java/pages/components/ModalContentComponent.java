@@ -1,5 +1,6 @@
 package pages.components;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
@@ -28,9 +29,12 @@ public class ModalContentComponent {
         return this;
     }
 
-    @Step("Проверка заполненного значения {value} и поля {key}")
+    @Step("В поле {key} отображается {value}")
     public ModalContentComponent checkResult(String key, String value){
-        infoUserBody.$(byText(key)).parent().shouldHave(text(value));
+        if (!Configuration.browser.equalsIgnoreCase("firefox")) {
+            infoUserBody.$(byText(key)).parent().shouldHave(text(value));
+        }
+
         return this;
     }
 

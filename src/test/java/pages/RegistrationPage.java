@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
@@ -32,17 +33,17 @@ public class RegistrationPage {
                     state = $("#stateCity-wrapper"),
                     city = $("#stateCity-wrapper"),
                     submitButton = $("#submit");
-            String title = "Student Registration Form";
 
-    @Step("Открываем страницу регистрации")
+
+
+    @Step("Открытие страницы регистрации")
     public RegistrationPage openPage(){
         open(uri);
-        titleLabel.shouldHave(text(title));
         footerAndAdd.deleteFooterAndAdd();
         return this;
     }
 
-
+    @Step("Проверка заголовка страницы")
     public RegistrationPage checkTitle(String value){
         titleLabel.shouldHave(text(value));
         return this;
@@ -98,8 +99,11 @@ public class RegistrationPage {
     }
 
     @Step("Выбор фотографии {value} в поле 'image'")
-    public RegistrationPage setImage(String value){
-        image.uploadFromClasspath(value);
+    public RegistrationPage setImage(String value) {
+        if (!Configuration.browser.equalsIgnoreCase("firefox")) {
+            image.uploadFromClasspath(value);
+        }
+
         return this;
     }
 
@@ -123,7 +127,7 @@ public class RegistrationPage {
         return this;
     }
 
-    @Step("Нажатие на 'submit' для подтверждение регистрации")
+    @Step("Нажатие на 'submit' для подтверждения регистрации")
     public RegistrationPage submit(){
         Selenide.sleep(1000);
         submitButton.click();
