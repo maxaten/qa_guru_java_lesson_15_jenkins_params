@@ -18,7 +18,7 @@ public class TestBase {
         Configuration.browserVersion = System.getProperty("browserVersion", "119.0");
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
         Configuration.pageLoadStrategy = "eager";
-        Configuration.remote = System.getProperty("remote", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
+//        Configuration.remote = System.getProperty("remote", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
         Configuration.timeout = 10000;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -31,8 +31,8 @@ public class TestBase {
 
     @AfterEach
     void addAttachments(){
-        Attach.screenShotAs("Last Screenshot");
         if (!Configuration.browser.equalsIgnoreCase("firefox")){
+            Attach.screenShotAs("image/png");
             Attach.browserConsoleLogs();
         }
         Attach.pageSource();
