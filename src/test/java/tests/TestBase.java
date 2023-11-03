@@ -5,7 +5,6 @@ import helpers.Attach;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
 import java.util.Map;
 
 import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
@@ -15,8 +14,8 @@ public class TestBase {
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browser =  System.getProperty("browser", "chrome");
-        Configuration.browserVersion = System.getProperty("browserVersion", "100.00");
+        Configuration.browser =  System.getProperty("browser", "firefox");
+        Configuration.browserVersion = System.getProperty("browserVersion", "119.0");
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
         Configuration.pageLoadStrategy = "eager";
         Configuration.remote = System.getProperty("remote", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
@@ -33,8 +32,10 @@ public class TestBase {
     @AfterEach
     void addAttachments(){
         Attach.screenShotAs("Last Screenshot");
+        if (!Configuration.browser.equalsIgnoreCase("firefox")){
+            Attach.browserConsoleLogs();
+        }
         Attach.pageSource();
-        Attach.browserConsoleLogs();
         Attach.addVideo();
 
         closeWebDriver();

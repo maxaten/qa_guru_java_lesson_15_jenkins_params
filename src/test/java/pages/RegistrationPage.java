@@ -4,7 +4,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import pages.components.CalendarComponent;
-import utils.custom.FooterAndAdd;
+import helpers.deleteFooterAndAdd;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -16,7 +16,7 @@ public class RegistrationPage {
     String uri = "/automation-practice-form";
 
     CalendarComponent calendar = new CalendarComponent();
-    FooterAndAdd footerAndAdd = new FooterAndAdd();
+    deleteFooterAndAdd footerAndAdd = new deleteFooterAndAdd();
 
     SelenideElement titleLabel = $(".practice-form-wrapper"),
                     firstNameInput = $("#firstName"),
@@ -32,21 +32,19 @@ public class RegistrationPage {
                     state = $("#stateCity-wrapper"),
                     city = $("#stateCity-wrapper"),
                     submitButton = $("#submit");
+            String title = "Student Registration Form";
 
     @Step("Открываем страницу регистрации")
     public RegistrationPage openPage(){
         open(uri);
+        titleLabel.shouldHave(text(title));
+        footerAndAdd.deleteFooterAndAdd();
         return this;
     }
 
 
     public RegistrationPage checkTitle(String value){
         titleLabel.shouldHave(text(value));
-        return this;
-    }
-
-    public RegistrationPage deleteFooterAndAdd(){
-        footerAndAdd.deleteFooterAndAdd();
         return this;
     }
 

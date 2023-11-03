@@ -25,8 +25,6 @@ public class RegistrationWithPageObjectsTests extends TestBase {
     void fillFormTest(){
         registrationPage
                 .openPage()
-                .checkTitle(title)
-                .deleteFooterAndAdd()
                 .setFirstName(genData.firstName)
                 .setLastName(genData.lastName)
                 .setUserEmail(genData.email)
@@ -61,8 +59,6 @@ public class RegistrationWithPageObjectsTests extends TestBase {
     @DisplayName("Заполнение обязательных полей")
     void fillingRequiredFieldsTest(){
         registrationPage.openPage()
-                .checkTitle(title)
-                .deleteFooterAndAdd()
                 .setFirstName(genData.firstName)
                 .setLastName(genData.lastName)
                 .setGender(genData.gender)
@@ -84,8 +80,6 @@ public class RegistrationWithPageObjectsTests extends TestBase {
     void blankFieldsFormTest(){
         registrationPage.openPage()
                 .setFirstName(genData.firstName)
-                .checkTitle(title)
-                .deleteFooterAndAdd()
                 .submit();
 
         modalContentComponent.checkNotBeVisible()
