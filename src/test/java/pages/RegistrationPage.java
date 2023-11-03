@@ -94,6 +94,7 @@ public class RegistrationPage {
 
     @Step("Выбор хобби {value} в поле 'hobbies'")
     public RegistrationPage setHobbies(String value){
+        Selenide.sleep(3000);
         hobbies.$(byText(value)).click();
         return this;
     }
@@ -129,7 +130,6 @@ public class RegistrationPage {
 
     @Step("Нажатие на 'submit' для подтверждения регистрации")
     public RegistrationPage submit(){
-        Selenide.sleep(1000);
         submitButton.click();
         return this;
     }

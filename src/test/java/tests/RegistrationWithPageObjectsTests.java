@@ -77,7 +77,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
 
 
     @Test()
-    @DisplayName("Нуспешная регистрая. Заполнение пустых полей")
+    @DisplayName("Неуспешная регистрация. Заполнение пустых полей")
     void blankFieldsFormTest(){
         registrationPage.openPage()
                 .setFirstName(genData.firstName)
