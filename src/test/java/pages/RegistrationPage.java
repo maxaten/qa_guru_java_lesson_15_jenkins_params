@@ -127,7 +127,7 @@ public class RegistrationPage {
 
     @Step("Нажатие на 'submit' для подтверждение регистрации")
     public RegistrationPage submit(){
-        Selenide.sleep(2000);
+        Selenide.sleep(1000);
         submitButton.click();
         return this;
     }
